@@ -202,10 +202,30 @@ public class SortPersonNameAlphabetically {
                 System.out.println("Invalid choice!");
         }
     }
+    //to sort address book by person's first name, City , State or Zip
     public static void sortPersonAlphabetically(ArrayList<Contacts> contactDetails){
-        System.out.println("After sorting Person's name:--------------------");
-        System.out.println(contactDetails.stream().sorted(Comparator.comparing(contacts -> contacts.getFirstName() + contacts.getLastName())).collect(Collectors.toList()));
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Operations:----------- 1)Sort by First name, 2)Sort by City, 3)Sort by State, 4)Sort by Zip");
+        System.out.print("Enter your choice: ");
+        int choice=scanner.nextInt();
+        switch (choice){
+            case 1:
+                   System.out.println(contactDetails.stream().sorted(Comparator.comparing(contacts -> contacts.getFirstName() + contacts.getLastName())).collect(Collectors.toList()));
+                   break;
+            case 2:
+                System.out.println(contactDetails.stream().sorted(Comparator.comparing(contacts -> contacts.getCity())).collect(Collectors.toList()));
+                break;
+            case 3:
+                System.out.println(contactDetails.stream().sorted(Comparator.comparing(contacts -> contacts.getState())).collect(Collectors.toList()));
+                break;
+            case 4:
+                System.out.println(contactDetails.stream().sorted(Comparator.comparing(contacts -> contacts.getZip())).collect(Collectors.toList()));
+                break;
+            default:
+                System.out.println("Invalid choice!");
+        }
     }
+
     //to display entire address book
     public static void display(ArrayList<Contacts> contactDetails){
         Iterator<Contacts> details = contactDetails.iterator();
